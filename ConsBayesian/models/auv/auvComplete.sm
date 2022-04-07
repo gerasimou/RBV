@@ -1,0 +1,33 @@
+ctmc
+
+
+const int x 				=1;        //       = 1;
+//double x_OK         		= 0.9999;
+const double p_OK  			= 0.1;     // the probability that a chain is not dirty
+const double r_inspect    	= 1/30.0;  // assuming the average chain inspection time is 30 seconds
+const double r_travel     	= 1/120.0; // assuming the average travel time between chains is 2*60 seconds
+
+const double r_retry      	= 1;
+
+ const double r_damage	=0.001;//.109824563852826E-6;
+ const double r_clean	=0.095;//9.45641914e-02;//3.44716415e-06//
+
+
+module auv
+	auvS : [0..5] init 0;
+
+	[] auvS=0 -> p_OK * r_inspect 	: (auvS'=1) + (1-p_OK) * r_inspect : (auvS'=2);
+	[] auvS=1 -> r_travel		: (auvS'=5);
+	[] auvS=2 -> x * r_clean 	: (auvS'=1) + x * r_fail_clean : (auvS'=3) + (1-x) * r_travel : (auvS'=1) + r_damage : (auvS'=4);
+	[] auvS=3 -> r_retry		: (auvS'=2);
+	[] auvS=4 -> 1.0		: (auvS'=4);
+	[] auvS=5 -> 1.0		: (auvS'=5);
+endmodule
+
+
+rewards "energy"
+	auvS = 1 : 10; //travelling
+endrewards
+
+//Parameters
+ const double r_fail_clean=0.3511981;

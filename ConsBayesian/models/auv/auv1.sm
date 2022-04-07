@@ -1,0 +1,58 @@
+ctmc
+//Fixed params for all chains
+const double p_OK		= 0.1;     // the probability that a chain is not dirty
+const double r_inspect		= 1/30.0;  // assuming the average chain inspection time is 30 seconds
+const double r_travel     	= 1/120.0; // assuming the average travel time between chains is 2*60 seconds
+const double r_retry      	= 1;
+
+//Chain 2 commands
+const double r_fail_clean2;
+const double r_damage2;
+const double r_clean2;
+const double e2clean =0.0;
+const double e2skip  =0.0;
+
+//Chain 3 commands
+const double r_fail_clean3;
+const double r_damage3;
+const double r_clean3;
+const double e3clean =0.0;
+const double e3skip  =0.0;
+
+//Dummy variable for chain 0, i.e., starting the model from chain 1
+const int chain1 = 5;
+
+//Module for chain 2
+module chain2
+chain2: [0..5] init 0;
+[] chain2=0 & chain1=5 -> p_OK * r_inspect 	: (chain2'=1);
+[] chain2=0 & chain1=5-> (1-p_OK) * r_inspect 	: (chain2'=2);
+[] chain2=1 -> r_travel 	: (chain2'=5);
+[] chain2=2 -> x2* r_clean2: (chain2'=1);
+[] chain2=2 -> x2* r_fail_clean2: (chain2'=3);
+[] chain2=2 -> (1-x2)* r_travel : (chain2'=5);
+[] chain2=2 -> x2* r_damage2: (chain2'=4);
+[] chain2=3 -> r_retry : (chain2'=2);
+[] chain2=4 -> 1.0 	  : (chain2'=4);
+[] chain2=5 -> 1.0 	  : (chain2'=5);
+endmodule
+
+//Module for chain 3
+module chain3
+chain3: [0..5] init 0;
+[] chain3=0 & chain2=5 -> p_OK * r_inspect 	: (chain3'=1);
+[] chain3=0 & chain2=5-> (1-p_OK) * r_inspect 	: (chain3'=2);
+[] chain3=1 -> r_travel 	: (chain3'=5);
+[] chain3=2 -> x3* r_clean3: (chain3'=1);
+[] chain3=2 -> x3* r_fail_clean3: (chain3'=3);
+[] chain3=2 -> (1-x3)* r_travel : (chain3'=5);
+[] chain3=2 -> x3* r_damage3: (chain3'=4);
+[] chain3=3 -> r_retry : (chain3'=2);
+[] chain3=4 -> 1.0 	  : (chain3'=4);
+[] chain3=5 -> 1.0 	  : (chain3'=5);
+endmodule
+
+//Configuration parameters
+const int xcaseStudy.chainInspection.WindTurbineChain@1f7030a6=0;
+const int xcaseStudy.chainInspection.WindTurbineChain@5a1c0542=0;
+

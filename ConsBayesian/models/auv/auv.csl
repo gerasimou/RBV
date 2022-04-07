@@ -1,0 +1,8 @@
+P=? [true U[0, 60*60] auvS=5]
+
+P=? [true U[0, 60*60]  auvS=4]
+
+//R{"energy"}=? [F auvS=5]
+
+//R{"energy"}=? [C <= 1000]
+

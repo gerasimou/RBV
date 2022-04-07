@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  	<!--  Project specific -->
+  	<groupId>org</groupId>
+  	<artifactId>ConsBayesian</artifactId>
+  	<packaging>jar</packaging>
+  	<version>0.0.1</version>
+  	<name>ConsBayesian</name>
+  	<url>http://maven.apache.org</url>
+  	
+
+  	<!--  Properties -->
+	<properties>
+		<jdk.version>1.8</jdk.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+  	<!-- Repositories -->
+	<repositories>
+		<repository>
+			<name>Local repository</name>
+	   		<id>localRepository</id>
+        	<url>file://${project.basedir}/libs</url>
+	 	</repository>
+	</repositories>
+	
+	<dependencies>
+ 		<dependency>
+			<groupId>org.modelChecker</groupId>
+			<artifactId>Prism-PSY</artifactId>
+			<version>1.0.3</version>
+			<type>jar</type>
+		</dependency>					
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
+			<type>jar</type>
+		</dependency>					
+	</dependencies>
+	
+  
+  <build>
+  		<finalName>Executor</finalName>
+		<plugins>
+			<!-- download source code in Eclipse, best practice -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+				</configuration>
+			</plugin>
+
+			<!-- Set a compiler level -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.0</version>
+				<configuration>
+					<source>${jdk.version}</source>
+					<target>${jdk.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Maven Assembly Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<!-- get all project dependencies -->
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<!-- MainClass in mainfest make a executable jar -->
+					<archive>
+					  <manifest>
+						<mainClass>approach.server.EstimatorExecutor</mainClass>
+					  </manifest>
+					</archive>
+ 
+				</configuration>
+				<executions>
+				  <execution>
+					<id>make-assembly</id>
+                    <!-- bind to the packaging phase -->
+					<phase>package</phase> 
+					<goals>
+						<goal>single</goal>
+					</goals>
+				  </execution>
+				</executions>
+			</plugin>
+  		
+
+			<!--  Maven shade plugin -->
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-shade-plugin</artifactId>
+		        <version>3.2.2</version>
+		        <executions>
+		        		<execution>
+		        			<id>rename-uber-jar</id>
+		        			<phase>package</phase>
+		        			<goals>
+		        				<goal>shade</goal>
+		        			</goals>
+		        			<configuration>
+		        				<finalName>${project.name}-${project.version}</finalName>
+		        				<transformers>
+		        					<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+			        						<mainClass>approach.server.EstimatorExecutor</mainClass>
+			        						<!--<Build-Number>1.0.1</Build-Number>-->
+		        					</transformer>
+		        				</transformers>
+		        				<filters>
+		        					 <filter>
+					                  <artifact>org.modelChecker:PrismAPI</artifact>
+					                  <excludes>
+					                    <exclude>META-INF/</exclude>
+					                  </excludes>
+					                </filter>
+		        				</filters>
+		        			</configuration>
+		        		</execution>
+		        </executions>				 
+			</plugin>
+  			
+			<!-- Clean plugin  -->
+			<plugin>
+			    <artifactId>maven-clean-plugin</artifactId>
+			    <version>2.6.1</version>
+			    <configuration>
+				      <filesets>
+					        <fileset>
+						          <directory>${basedir}</directory>
+						          <includes>
+						            <include>output_Prism.txt</include>
+						            <include>Server*</include>
+						          </includes>
+					          <followSymlinks>false</followSymlinks>
+					        </fileset>
+				      </filesets>
+			    </configuration>
+		  </plugin>
+	    </plugins>
+  </build>
+</project>

@@ -1,0 +1,14 @@
+// objective, max 
+P=? [ !((M_up=1)&(R_present>=1)) U[10,60] ((M_up=1)&(R_present>=1)) ]
+
+
+// min
+//R{"C_down"}=? [ C<=60 ]
+
+
+// objective, max
+//R{"new"}=?[C<=60]
+
+// constraint, min, 50
+//R{"replicates"}=? [ C<=60 ]
+
