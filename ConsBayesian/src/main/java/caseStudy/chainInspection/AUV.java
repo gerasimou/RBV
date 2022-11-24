@@ -38,7 +38,9 @@ public class AUV{
 
 	int seed		 = 25000;
 	
-	//Random number generator with seed for reproducability
+	String verificationTime = "";
+	
+	//Random number generator with seed for reproducibility
 	AbstractWell rng;
 
     //Bernoulli distribution for X
@@ -80,6 +82,7 @@ public class AUV{
 		this.chainsList 	= new ArrayList<>();
 		for (int i=0; i<chainsNum; i++) 
 			chainsList.add(new WindTurbineChain(i+1, rng));
+		
 		prismPSY 				= new PRISMPSY_API_Runner();
 		
 		
@@ -95,7 +98,7 @@ public class AUV{
 		inspectExponential 	= new ExponentialDistribution(rng, r_inspect);// Note: the function requires a mean of the distribution
 		travelExponential 	= new ExponentialDistribution(rng, r_travel);
 		prepareExponential 	= new ExponentialDistribution(rng, r_prepare);
-		dirtyExponential 	= new ExponentialDistribution(rng, (p_damage + p_clean + p_fail_clean)/averageHoldingTime);
+		dirtyExponential 	= new ExponentialDistribution(rng, (p_damage + p_clean + p_fail_clean)/averageHoldingTime); //->1/averageHoldingTime
 		
 		
 		//initialise CTMC model parameters
@@ -111,39 +114,54 @@ public class AUV{
 		int chainsNum = chainsList.size();
 		
 		for (; currentlyInspectedChain<chainsNum; currentlyInspectedChain++) {
-			writeToFile("Chain " + currentlyInspectedChain);
-
+			writeToFile("Chain " + currentlyInspectedChain, true);
+			
+			
 			Estimator rFailClean = chainsList.get(currentlyInspectedChain).failCleanIPSP;
 			Estimator rDamage	 = chainsList.get(currentlyInspectedChain).damageBIPP;
 			Estimator rClean 	 = chainsList.get(currentlyInspectedChain).cleanBIPP;
-			run(rFailClean, rDamage, rClean, currentlyInspectedChain==chainsNum-1);
+			
+			run(rFailClean, rDamage, rClean, currentlyInspectedChain==chainsNum-1, currentlyInspectedChain);
+		}
+		
+		try {
+			Utility.exportToFile("verificationTime.txt", "\n"+verificationTime, true);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	
 	
-	public void run(Estimator ipspFailClean, Estimator bbippDamage, Estimator bbippClean, boolean finalChain) {
+	public void run(Estimator ipspFailClean, Estimator bbippDamage, Estimator bbippClean, boolean finalChain, int currentlyInspectedChain) {
 		double inspectTime = 1.0/inspectExponential.sample();
 	    double travelT;
 	    double holdingTSum = 0;
 	    int dirtyHoldingTCount 	= 0;
+	    
+	    int verificationCount = 0;
 
 	    int pOK    		= pBinomial.sample(1)[0];
 	    if (pOK==1){//go to DONE
 	    	travelT = 1.0/travelExponential.sample(); 
-	    	writeToFile(String.format("\tClean, Going to the next, Travelling time: %.3f", travelT ));
+	    	writeToFile(String.format("\tClean, Going to the next, Travelling time: %.3f", travelT ), true);
 	    }
 	    else{//not OK --> chain is dirty
 	        int dirtyResult = 0;//      = 0;
-	        writeToFile("\tDirty, Cleaning needed\n");
+	        writeToFile("\tDirty, Cleaning needed\n", true);
 	        do {
-	            boolean X = checkX(dirtyHoldingTCount); // get from the verification result
+	        	long start = System.currentTimeMillis();
+	            boolean X  = checkX(dirtyHoldingTCount); // get from the verification result
+	            long end   = System.currentTimeMillis();
+	            verificationTime += "Chain"+ (currentlyInspectedChain) +"-E"+ 
+	            					(verificationCount++) +","+ (end-start) +"\n";
+	            
 	            if (X){//try to clean the chain
 	                dirtyHoldingTCount ++;
 	                
 	                double holdingT		= 1.0/dirtyExponential.sample();
 
-	                writeToFile(String.format("Cleaning:%d  Time=%.3f\t ", dirtyHoldingTCount,holdingT).toString());
+	                writeToFile(String.format("Cleaning:%d  Time=%.3f\t ", dirtyHoldingTCount,holdingT).toString(), true);
 	                
 	                holdingTSum   += holdingT;
 
@@ -166,11 +184,11 @@ public class AUV{
 	                double v                    = rng.nextDouble(); //a random number to determine the 3 possible outcome after cleaning: cata fail, succ or fail.
 	                if (v <= p_damage){
 	                    dirtyResult = -1; //catastrophic failure
-	                    writeToFile("Catastrophic failure ");
+	                    writeToFile("Catastrophic failure ", true);
 	                }
 	                else if (v <= p_clean + p_damage){
 	                    dirtyResult = +1; //chain cleaned successfully
-	                    writeToFile("\nChain cleaned - ");
+	                    writeToFile("\nChain cleaned - ", true);
 	                }
 	                else{
 	                    dirtyResult = 0; //failed cleaning the chain
@@ -178,7 +196,7 @@ public class AUV{
 	            }
 	            else { //skip cleaning the chain, go to the next chain
                     dirtyResult = 2;
-                    writeToFile("Skipping current chain - ");
+                    writeToFile("Skipping current chain - ", true);
 	            }
 
 	        } while (X && (dirtyResult == 0));
@@ -186,14 +204,14 @@ public class AUV{
 	        if (dirtyResult > -1){ //chain cleaned successfully
 	        	travelT = 1.0/travelExponential.sample();
 	        	if (finalChain)
-		        	writeToFile(String.format("Travelling back to base with time %.3f\n", travelT).toString());
+		        	writeToFile(String.format("Travelling back to base with time %.3f\n", travelT).toString(), true);
 	        	else
-	        		writeToFile(String.format("Travelling to next chain with time %.3f\n", travelT).toString());
+	        		writeToFile(String.format("Travelling to next chain with time %.3f\n", travelT).toString(), true);
 	        }
 
 	    }
 	    
-	    writeToFile("\n\n");
+	    writeToFile("\n\n", true);
 	}
 	
 	
@@ -230,7 +248,7 @@ public class AUV{
 
 		//prepare ranges for the parameters of this model
 		String paramsWithRanges = mg.getRangeCommand(chainsToBeInspected);
-		writeToFile("\t\t" + paramsWithRanges);
+		writeToFile("\t\t" + paramsWithRanges, true);
 
 		for (int i=configsList.size()-1; i>=(configsList.size()-1)/2; i--) {
 			Integer[] config		 = configsList.get(i);
@@ -241,10 +259,10 @@ public class AUV{
 			
 			//for each property, this function results its minimum and maximum values
  			Property[] properties = prismPSY.calculatePropertiesBounds(modelFileName, propsFileName, paramsWithRanges);
-			writeToFile("\n\t\t" +Arrays.toString(config));
+			writeToFile("\n\t\t" +Arrays.toString(config), false);
 			
  			for (Property p : properties) {
-				writeToFile(Arrays.toString(p.getMinMax()) +"\t");
+				writeToFile(Arrays.toString(p.getMinMax()) +"\t", false);
 			}
  			
  			//evaluate
@@ -263,7 +281,7 @@ public class AUV{
  			}
 		}
 				
-		writeToFile("\n");
+		writeToFile("\n", true);
 		return xResult;
 	}
 	
@@ -287,9 +305,10 @@ public class AUV{
 
 	
 	
-	private void writeToFile (String msg) {
+	private void writeToFile (String msg, boolean systemOut) {
 		try {
-			System.out.print(msg);
+			if (systemOut)
+				System.out.print(msg);
 			Utility.exportToFile("log.txt", msg, true);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -302,7 +321,7 @@ public class AUV{
 		try {
 			
 			// SEED for reproducibility 
-			int seed 					= Integer.parseInt(Utility.getValue("SEED"));
+			int seed 					= Integer.parseInt(Utility.getValue("SEED").strip());
 
 			//number of chains
 			int chains 					= Integer.parseInt(Utility.getValue("CHAINS"));
