@@ -1,0 +1,102 @@
+site_name: Robust Bayesian Verification
+docs_dir: docs
+
+theme:
+  name: "material"
+
+  features:
+      # - navigation.tabs
+      - navigation.tabs.sticky
+      # - navigation.sections
+      - navigation.indexes
+      - navigation.top
+
+  palette: 
+      # Palette toggle for light mode
+      - media: "(prefers-color-scheme: light)"
+        scheme: default
+        toggle:
+          icon: material/toggle-switch
+          name: Switch to dark mode
+
+      # Palette toggle for dark mode
+      - media: "(prefers-color-scheme: dark)"
+        scheme: slate
+        toggle:
+          icon: material/toggle-switch-off-outline
+          name: Switch to light mode
+
+extra:
+
+  #remove the made by MKDocs
+  generator: false
+
+  # consent:
+  #   title: Cookie consent
+  #   cookies:
+  #     analytics: Google Analytics
+  #   actions:
+  #     - accept
+  #     - manage
+  #     - reject
+  #   description: >- 
+  #     We use cookies to recognize your repeated visits and preferences, as well
+  #     as to measure the effectiveness of our documentation and whether users
+  #     find what they're searching for. With your consent, you're helping us to
+  #     make our documentation better.
+
+# copyright: >
+#   Copyright &copy; 2016 - 2022 Martin Donath –
+#   <a href="#__consent">Change cookie settings</a>
+
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
+  #Formatting text
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+
+  #Icons
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
+  #Maths
+  - pymdownx.arithmatex:
+      generic: true
+
+  #Lists
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+
+
+#draw diagrams - DOES NOT WORK
+  # - pymdownx.superfences:
+  #     custom_fences:
+  #       - class: mermaid
+  #         format: !!python/name:pymdownx.superfences.fence_code_format
+  #         name: mermaid
+          
+
+nav:
+  - Home: index.md
+  # - tutorials.md
+  # - reference.md
+  # - explanation.md
+  # - How-To Guide: howToGuide.md
+  
