@@ -26,6 +26,12 @@ Download the code from this GitHub repository and place the `src/` folder in the
 
 ## Anything Else?
 
+
+``` title="Verification Frameowkr"
+[^1]: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+```
+
+
 > **Note:** Expand this section by considering the
 > following points:
 
@@ -67,9 +73,12 @@ Download the code from this GitHub repository and place the `src/` folder in the
 
 
 ???+ note
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
-    nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor
-    massa, nec semper lorem quam in massa.
+    - [ ] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
+
+    - [x] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
+
+        - [ ] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod nulla. Curabitur feugiat, tortor non consequat finibus, justo purus auctor massa, nec semper lorem quam in massa.
+
 
 ???+ info
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla et euismod
@@ -181,3 +190,23 @@ $$
     * [x] In scelerisque nibh non dolor mollis congue sed et metus
     * [ ] Praesent sed risus massa
 - [ ] Aenean pretium efficitur erat, donec pharetra, ligula non scelerisque
+
+
+
+## Images
+
+![Image title](https://dummyimage.com/600x400/eee/aaa){ align=left }
+
+
+
+<figure markdown>
+  ![Image title](assets/images/diagramFramework.png)
+  <figcaption>Image caption</figcaption>
+</figure>
+
+
+![Image title](assets/images/diagramFramework.png#only-light)
+![Image title](https://dummyimage.com/600x400/21222c/d5d7e2#only-dark)
+
+
+![Image title](assets/images/diagramFramework.png){ align=left }

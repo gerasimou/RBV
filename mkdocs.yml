@@ -77,6 +77,12 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
 
+  #HTML
+  - md_in_html
+
+  #footnotes
+  - footnotes
+
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -95,10 +101,17 @@ extra_javascript:
 extra_css:
   - stylesheets/extra.css
 
-  
+
+plugins:
+  - glightbox
+
 
 nav:
   - Home: index.md
+  - Estimators: estimators.md
+  - Robotic Mission: caseStudy.md
+  - Authors: authors.md
+
   # - tutorials.md
   # - reference.md
   # - explanation.md
