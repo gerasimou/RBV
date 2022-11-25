@@ -108,7 +108,7 @@ plugins:
 
 nav:
   - Home: index.md
-  - Estimators: estimators.md
+  - Bayesian Estimators: estimators.md
   - Robotic Mission: caseStudy.md
   - Authors: authors.md
 
