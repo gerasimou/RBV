@@ -91,7 +91,11 @@ extra_javascript:
   #       - class: mermaid
   #         format: !!python/name:pymdownx.superfences.fence_code_format
   #         name: mermaid
-          
+
+extra_css:
+  - stylesheets/extra.css
+
+  
 
 nav:
   - Home: index.md
