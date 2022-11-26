@@ -83,6 +83,9 @@ markdown_extensions:
   #footnotes
   - footnotes
 
+  #buttons
+  - attr_list
+
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -104,7 +107,7 @@ extra_css:
 
 plugins:
   - glightbox
-
+  - mkdocs-video
 
 nav:
   - Home: index.md

@@ -5,7 +5,6 @@ hide:
 ---
 # Robust Bayesian Verification 
 
-<!-- Xingyu Zhao, Simos Gerasimou, Radu Calinescu, Calum Imrie, Valentin Robu, and David Flynn -->
 
 
 ???+ tip "Summary"
@@ -24,11 +23,30 @@ hide:
     - [x] The framework is illustrated on  case study for the verification of an **offshore wind-turbine inspection and maintenance robotic mission**
     <!-- **autonomous robotic mission for underwater infrastructure inspection and repair** -->
 
+
+    <a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view?usp=share_link" target="_blank">
+        :material-video:{ .filledIconsBlue }
+     </a>
+    <a href="https://github.com/gerasimou/NMI" target="_blank">
+        :material-github:{ .filledIconsDarkBlue }
+    </a>
+
+<!-- [[Subscribe to our newsletter](#){ .md-button }]() -->
+
+<!-- - [x] You can find a :material-video:{ .filledIconsBlue } showing our work is available -->
+<!-- [here](assets/video/nmiVideo.mp4):material-video:{ .filled }  -->
+
+    
+
+
 <!-- - [x]  Prior knowledge and runtime observations are used to learn expected ranges of rates values for regural and singural events -->
 <!-- - catastrophic failures, completion of difficult one-off tasks) -->
 
 <!-- [ ] For **regular events**, we developed a Bayesian inference using imprecise probability with sets of priors (IPSP) estimator -->
 <!-- - [ ] For **singular events**, we developed a Bayesian inference using partial priors (BIPP) estimator -->
+
+<!-- [Send :fontawesome-solid-paper-plane:][Demo]{ .md-button } -->
+
 
 
 
