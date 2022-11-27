@@ -19,3 +19,35 @@ this video
 
 --- 
 
+## Wind-turbine Inspection and Maintenance AUV Mission
+
+We consider an autonomous underwater vehicle (AUV) deployed to execute a structural inspection and cleaning mission of the substructure of an offshore wind farm comprising multiple floating wind turbines. 
+
+The AUV is deployed to collect data about the condition of floating chains to enable the post-mission identification of problems that could affect the structural integrity of the chain. When the visual inspection of a chain is hindered due to accumulated biofouling, the AUV can use its on-board high-pressure water jet to clean the chain and continue with the inspection2. 
+
+The full details of the AUV mission, including its model using continuous-time Markov chains, Quality-of-Sevice requirements, example scenario and a video illustrating the its execution can be found on the [project webpage](https://gerasimou.github.io/NMI/caseStudy/).
+
+--- 
+
+## Running the Robotic Mission
+
+The robotic mission is provided as a en Eclipse-based Java tool that uses Maven for managing the project and its dependencies, and for generating the executable jars.
+
+1. Import the project in your IDE of preference
+
+2. Set the following environment variable (In Eclipse go to Run / Run Configurations / Environment tab / New)
+
+        OSX: DYLD_LIBRARY_PATH = libs/runtime 
+        
+        *NIX: LD_LIBRARY_PATH = libs/runtime
+
+3. Specify the configuration parameters in file [config.properties](https://github.com/gerasimou/NMI/blob/main/ConsBayesian/config.properties)
+
+4. Run the [AUV class](https://github.com/gerasimou/NMI/blob/main/ConsBayesian/src/main/java/caseStudy/chainInspection/AUV.java)
+
+
+
+--- 
+
+For questions and comments, please contact [Simos Gerasimou](mailto:simos.gerasimou@york.ac.uk)
+
