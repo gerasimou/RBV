@@ -16,4 +16,8 @@
     - The framework is illustrated on case study for the verification of an offshore wind-turbine inspection and maintenance robotic mission
 
 
-For more information, see [the project's webpage](https://gerasimou.github.io/NMI/) :page_facing_up: and [this video](https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view) :movie_camera:.
+For more information, see [the project's webpage](https://gerasimou.github.io/NMI/) :page_facing_up: and 
+<a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view">
+this video
+</a>
+:movie_camera:.
