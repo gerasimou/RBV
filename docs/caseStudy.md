@@ -75,9 +75,14 @@ In the AUV first attempt at chain 3, all the configurations are feasible, so con
 ### **Video**
 
 <!-- ![type:video](assets/video/nmiVideo.mp4) -->
-<video width="640" height="480" controls>
-  <source src="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view?usp=share_link" type="video">
-</video>
+<!-- <video width="640" height="480" controls>
+  <source src="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/preview" type="video">
+</video> -->
+<iframe src="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/preview" width="720" height="480"
+frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope;
+picture-in-picture" allowfullscreen="true"></iframe>
+
+
 
 
 [^1]: Anders Myhr, Catho Bjerkseter, Anders Ågotnes, and Tor A Nygaard. Levelised cost of energy for offshore floating wind turbines in a life cycle perspective. Renewable Energy, 66:714–728, 2014.
