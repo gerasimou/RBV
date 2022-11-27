@@ -1,5 +1,7 @@
 # Robust Bayesian Verification
 
+ ![Robust Bayesian Verification Framework](images/diagramFramework.png "Robust Bayesian Verification Framework")
+
 * We present a novel **Bayesian learning framework** for the runtime verification of autonomous robots operating in uncertain environments.
 * We consider **regular** (occurring regularly during operation) and **singular** events occurring zero/once (catastrophic failures, completion of difficult one-off tasks).
 * Our **BIPP Bayesian estimator** (using partial priors) uses prior knowledge and the lack of runtime data to learn expected ranges of rates for singular events.
