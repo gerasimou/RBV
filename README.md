@@ -17,7 +17,7 @@
 
 
 For more information, see [the project's webpage](https://gerasimou.github.io/NMI/) :page_facing_up: and 
-<a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view">
+<a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view" target="_blank">
 this video
 </a>
 :movie_camera:.
