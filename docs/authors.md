@@ -89,7 +89,7 @@ hide:
         </td>
         <td>        
             <h1 style="margin-bottom:20px">
-                <a href="https://homepages.cwi.nl/~robu" target="_blank">
+                <a href="https://www.gla.ac.uk/schools/engineering/staff/davidflynn" target="_blank">
                     David Flynn
                 </a>
             </h1>
