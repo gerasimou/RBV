@@ -1,11 +1,11 @@
-//-------------------------------------------------
-// NAME: M. Benjamin, MIT CSAIL
-// FILE: charlie.moos
-//-------------------------------------------------
-
+//------------------------------------------------
+// File: nmi.bhv
+// Name: Simos Gerasimou
+// Date: 2022
+//------------------------------------------------
 ServerHost   = localhost
 ServerPort   = 9000
-Community    = charlie
+Community    = NMI
 
 MOOSTimeWarp = 1
 LatOrigin    = 43.825300 
@@ -70,18 +70,21 @@ ProcessConfig = pMarineViewer
 
   //tiff_file            = UK.tiff
   //tiff_file            = AerialSingapore.tif
-  tiff_file            = forrest19.tif
+  //tiff_file            = forrest19.tif
 
-  set_pan_x            = -90
-  set_pan_y            = -400
-  zoom                 = 0.85
+  tiff_file            = test.tif
+
+  set_pan_x            = 100
+  set_pan_y            = 880
+  zoom                 = 6
   vehicle_shape_scale  = 4.0
   hash_delta           = 50
   hash_shade           = 0.4
-  hash_viewable        = true
+  hash_viewable        = false
   vehicles_name_mode   = off
   vehicles_name_color  = red
   trails_length        = 50
+  //view_center          = (100,-100)
 
 
   //marker_viewable_labels = false
@@ -143,7 +146,7 @@ ProcessConfig = pHelmIvP
   AppTick    = 4
   CommsTick  = 4
 
-  behaviors  = charlie.bhv
+  behaviors  = nmi.bhv
   verbose    = true
   domain     = course:0:359:360
   domain     = speed:0:4:21
@@ -210,13 +213,32 @@ ProcessConfig = pLogger
 }
 
 //------------------------------------------
+// uTimerScript config block
+ProcessConfig = uTimerScript
+{
+//  AppTick = 4
+//  CommsTick = 4
+
+  // event  = var = SURVEY_UPDATES,  val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40:100,-70", time =10
+  // event  = var = SURVEY_UPDATES2, val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40:100,-70:100,-90: 75,-125", time =10
+
+  event  = var = SURVEY_UPDATES,  val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40", time =10
+  event  = var = SURVEY_UPDATES2, val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40", time =10
+  
+  event  = var = MOOS_MANUAL_OVERRIDE, val=false, time=20
+  event  = var = DEPLOY, val=true, time=20
+  event  = quit, time=220
+}
+
+//------------------------------------------
 // sUUV config block
 ProcessConfig = sUUVNMI
 {
   max_appcast_events = 50
   PORT                = 8860
 
-  SEED                = 15
+  SEED                = 15 // (G G G LB G W)
+  //SEED                = 150 // (G G LB G W W)
 
   P_CHAIN_OK          = 0.35
   P_CLEAN_CHAIN       = 0.91
@@ -225,20 +247,6 @@ ProcessConfig = sUUVNMI
   R_CHAIN_CLEAN       = 0.011833166666666667
   R_CHAIN_FAIL_CLEAN  = 0.01583333333333333
   R_DAMAGE            = 0.000000166666666667
+  
+  LOG_FILE            = logTest
 }
-
-
-//------------------------------------------
-// uTimerScript config block
-ProcessConfig = uTimerScript
-{
-//  AppTick = 4
-//  CommsTick = 4
-
-  event  = var = SURVEY_UPDATES,  val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40:100,-70", time =10
-  event  = var = SURVEY_UPDATES2, val="points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40:100,-70:100,-90: 75,-125", time =10
-  event  = var = MOOS_MANUAL_OVERRIDE, val=false, time=20
-  event  = var = DEPLOY, val=true, time=20
-  event  = quit, time=220
-}
-

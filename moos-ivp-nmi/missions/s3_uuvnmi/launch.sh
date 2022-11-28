@@ -1,5 +1,5 @@
 #!/bin/bash -e
-COMMUNITY="charlie"
+COMMUNITY="nmi"
 
 #-------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments

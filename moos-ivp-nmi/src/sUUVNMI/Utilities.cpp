@@ -34,11 +34,9 @@ void Utilities::writeToFile(string filename, string outputString)
 	if (!logExists){
 		logExists = true;
 		myfile.open (filename);
-		myfile << "File does not exist" << "\n";
 	}
 	else{
 		myfile.open (filename, ios::app);
-		myfile << "File exists" << "\n";
 	}
 	myfile << outputString << "\n";
 	myfile.close();
