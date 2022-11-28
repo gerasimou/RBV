@@ -29,6 +29,43 @@ The full details of the AUV mission, including its model using continuous-time M
 
 --- 
 
+## Installing and Running the AUV Simulation
+
+1) Download the MOOS-IvP simulator as advised [here](https://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Site.Download).
+
+2) Install the MOOS-IvP simulator by following the instructions provided in the simulator for your target operating system (Linux or OSX)
+
+3) Download the AUV simulation code available in the [moos-ivp-nmi]() directory
+
+4) Navigate to the ``moos-ivp-nmi`` directory and execute
+        
+        ./clean.sh
+        ./build.sh sUUVNMI
+If everything went well, you will see the message
+> ``[100%] Built target sUUVNMI``
+
+
+
+5) Add the full path to the ``moos-ivp-nmi/bin`` directory to your shell path
+ - OSX   -> ./bash_profile 
+ - Unix  -> ./bashrc
+
+    PATH="FULL_PATH_TO"/moos-ivp-nmi/bin:$PATH
+
+> replace "FULL_PATH_TO" with the full path leading to the ``moos-ivp-nmi/bin`` directory
+
+6) Navigate to ``moos-ivp-nmi/missions/s3_uuvnmi`` and run the mission by executing
+
+    ./launch.sh 2
+
+> 2 indicates how fast the simulation will run
+
+**Note:** You can alter the mission by changing the sUUVNMI script in the [charlie.moos]() file.
+    
+    
+
+--- 
+
 ## Running the Robotic Mission
 
 The robotic mission is provided as a en Eclipse-based Java tool that uses Maven for managing the project and its dependencies, and for generating the executable jars.

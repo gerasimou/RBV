@@ -1,0 +1,172 @@
+//------------------------------------------------
+// File: charlie.bhv
+// Name: M. Benjamin
+// Date: Jan 2nd, 2010
+//------------------------------------------------
+
+initialize   DEPLOY=false,  RETURN  = false, CLEAN = false
+//initialize   SURVEY=true,   
+initialize STATION_KEEP = false
+
+set MODE = ACTIVE {
+  DEPLOY = true
+} INACTIVE
+
+set MODE = SURVEYING {
+  MODE          = ACTIVE
+  STATION_KEEP  = false
+  CLEAN         = false
+  RETURN        = false
+}
+
+set MODE = STATION_KEEPING {
+  MODE          = ACTIVE
+  STATION_KEEP  = true
+  CLEAN         = false
+  RETURN        = false
+}
+
+set MODE = CLEANING {
+  MODE          = ACTIVE
+  STATION_KEEP  = false
+  CLEAN         = true
+  RETURN        = false
+}
+
+set MODE = RETURNING {
+  MODE          = ACTIVE
+  STATION_KEEP  = false
+  CLEAN         = false
+  RETURN        = true
+}
+
+
+//set MODE = SURVEYING {
+//  MODE = ACTIVE
+//  (SURVEY = true) and (RETURN != true)
+//  STATION_KEEP != true
+//}
+
+//set MODE = RETURNING {
+//  MODE = ACTIVE
+// RETURN = true
+//  STATION_KEEP != true
+//} STATION-KEEPING
+
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{ 
+  name      = surveying
+  pwt       = 100
+  condition = DEPLOY        = true
+  condition = STATION_KEEP  = false
+  condition = CLEAN         = false
+  condition = RETURN        = false
+
+
+  updates   = SURVEY_UPDATES2
+  endflag   = FINAL_CHAIN = true
+  perpetual = true
+
+  wptflag = STATION_KEEP=true
+  wptflag = NEW_CHAIN = station_pt=$(X),$(Y)
+
+          //lead = 8
+   lead_damper = 1
+         speed = 2.0   // meters per second
+        radius = 8.0
+        repeat = 0 
+        points = 60,-40:40,-90:60,-140:150,-140:170,-90:150,-40:100,-100
+
+    visual_hints = vertex_size  = 3             // default
+    visual_hints = edge_size    = 1             // default
+    visual_hints = vertex_color = dodger_blue   // default
+    visual_hints = edge_color   = white         // default
+    visual_hints = nextpt_color = yellow        // default
+    visual_hints = nextpt_lcolor = invisible     // default
+    visual_hints = nextpt_vertex_size = 5       // default
+}
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{
+  name      = returning
+  priority  = 100
+  perpetual = true
+  updates   = RETURN_UPDATES
+  condition = DEPLOY        = true
+  condition = STATION_KEEP  = false
+  condition = CLEAN         = false
+  condition = RETURN        = true
+
+
+  endflag   = STATION_KEEP = true
+
+      speed = 1.3
+     radius = 3.0
+  nm_radius = 15.0
+      point = x=15, y=0
+
+    visual_hints = vertex_size  = 5             // default
+    visual_hints = edge_size    = 1             // default
+    visual_hints = vertex_color = dodger_blue   // default
+    visual_hints = edge_color   = white         // default
+    visual_hints = nextpt_color = yellow        // default
+    visual_hints = nextpt_lcolor = invisible     // default
+    visual_hints = nextpt_vertex_size = 5       // default
+}
+
+//----------------------------------------------
+Behavior = BHV_StationKeep
+{
+  name      = inspecting
+  priority  = 100
+  condition = DEPLOY        = true
+  condition = STATION_KEEP  = true
+  condition = CLEAN         = false
+  condition = RETURN        = false
+
+     inner_radius = 2
+     outer_radius = 15
+     outer_speed = 1
+     transit_speed=1
+
+       updates = NEW_CHAIN
+       station_pt = 0,0
+
+   visual_hints = label_color = invisible       
+}
+
+
+
+//----------------------------------------------
+Behavior = BHV_Waypoint
+{ 
+  name      = cleaning
+  pwt       = 100
+  condition = DEPLOY        = true
+  condition = STATION_KEEP  = false
+  condition = CLEAN         = true
+  condition = RETURN        = false
+
+  endflag   = CLEANING_DONE = true
+  updates   = CLEANING_UPDATES
+
+   lead_damper = 1
+         speed = 1.0   // meters per second
+        radius = 1.0
+        repeat = 0 
+        polygon = label=chain, format=lawnmower, x=-10, y=-40, height=10, width=10, lane_width=5
+
+  templating = spawn      
+
+    visual_hints = vertex_size  = 3             // default
+    visual_hints = edge_size    = 1             // default
+    visual_hints = vertex_color = dodger_blue   // default
+    visual_hints = edge_color   = white         // default
+    visual_hints = nextpt_color = yellow        // default
+    visual_hints = nextpt_lcolor = invisible     // default
+    visual_hints = nextpt_vertex_size = 5       // default
+    visual_hints = label_color  = invisible
+}
