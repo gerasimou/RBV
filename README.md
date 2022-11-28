@@ -31,58 +31,40 @@ The full details of the AUV mission, including its model using continuous-time M
 
 ## Installing and Running the AUV Simulation
 
-1) Download the MOOS-IvP simulator as advised [here](https://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Site.Download).
+1) Download the MOOS-IvP simulator as advised 
+   <a href="https://oceanai.mit.edu/moos-ivp/pmwiki/pmwiki.php?n=Site.Download" target="_blank">here</a>.
 
-2) Install the MOOS-IvP simulator by following the instructions provided in the simulator for your target operating system (Linux or OSX)
+2) Install the MOOS-IvP simulator by following the instructions provided in the simulator for your target operating system (Linux or OSX).
 
-3) Download the AUV simulation code available in the [moos-ivp-nmi]() directory
+3) Download the AUV simulation code available in the [moos-ivp-nmi](https://github.com/gerasimou/NMI/tree/main/moos-ivp-nmi) directory.
 
 4) Navigate to the ``moos-ivp-nmi`` directory and execute
         
         ./clean.sh
         ./build.sh sUUVNMI
-If everything went well, you will see the message
-> ``[100%] Built target sUUVNMI``
+   - If everything went well, you will see the message
+       > ``[100%] Built target sUUVNMI``
 
 
 
 5) Add the full path to the ``moos-ivp-nmi/bin`` directory to your shell path
- - OSX   -> ./bash_profile 
- - Unix  -> ./bashrc
+   - If everything went well, you will see the message
+       > OSX   -> ./bash_profile 
+       > Unix  -> ./bashrc
 
     PATH="FULL_PATH_TO"/moos-ivp-nmi/bin:$PATH
 
-> replace "FULL_PATH_TO" with the full path leading to the ``moos-ivp-nmi/bin`` directory
+       > replace "FULL_PATH_TO" with the full path leading to the ``moos-ivp-nmi/bin`` directory
 
 6) Navigate to ``moos-ivp-nmi/missions/s3_uuvnmi`` and run the mission by executing
 
     ./launch.sh 2
 
-> 2 indicates how fast the simulation will run
+       > 2 indicates how fast the simulation will run
 
-**Note:** You can alter the mission by changing the sUUVNMI script in the [charlie.moos]() file.
+**Note:** You can alter the mission by changing the sUUVNMI script in the [nmi.moos](https://github.com/gerasimou/NMI/blob/main/moos-ivp-nmi/missions/s3_uuvnmi/nmi.moos) file.
     
     
-
---- 
-
-## Running the Robotic Mission
-
-The robotic mission is provided as a en Eclipse-based Java tool that uses Maven for managing the project and its dependencies, and for generating the executable jars.
-
-1. Import the project in your IDE of preference
-
-2. Set the following environment variable (In Eclipse go to Run / Run Configurations / Environment tab / New)
-
-        OSX: DYLD_LIBRARY_PATH = libs/runtime 
-        
-        *NIX: LD_LIBRARY_PATH = libs/runtime
-
-3. Specify the configuration parameters in file [config.properties](https://github.com/gerasimou/NMI/blob/main/ConsBayesian/config.properties)
-
-4. Run the [AUV class](https://github.com/gerasimou/NMI/blob/main/ConsBayesian/src/main/java/caseStudy/chainInspection/AUV.java)
-
-
 
 --- 
 
