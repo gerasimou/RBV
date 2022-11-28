@@ -20,7 +20,7 @@ hide:
     
     - [x] Quantitative verification on these models enables computing **expected intervals for key system properties** capturing the parametric uncertainy of the robotic mission
 
-    - [x] The framework is illustrated on  case study for the verification of an **offshore wind-turbine inspection and maintenance robotic mission**
+    - [x] The framework is illustrated on a case study for the verification of an **offshore wind-turbine inspection and maintenance robotic mission**
     <!-- **autonomous robotic mission for underwater infrastructure inspection and repair** -->
 
 

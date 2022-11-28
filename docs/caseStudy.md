@@ -15,6 +15,12 @@ The AUV is deployed to collect data about the condition of $k \geq 1$ floating c
  
  The high degrees of _aleatoric uncertainty_ in navigation and the perception of the marine environment entail that the AUV might fail to clean a chain. When this occurs, the AUV can retry the cleaning task or skip the chain and move to the next.
 
+<figure markdown>
+  ![Illustration of the AUV executing the floating chain cleaning and inspection mission](assets/images/simulation.png "Illustration of the AUV executing the floating chain cleaning and inspection mission")
+  <figcaption>Illustration of the AUV executing the floating chain cleaning and inspection mission</figcaption>
+</figure>
+
+
 
 ### **Stochastic mission modelling**
 
