@@ -11,8 +11,8 @@
 * We illustrate the framework for the runtime verification of an **offshore wind-turbine inspection and maintenance UAV mission**.
 
 
-For more information, see [the project's webpage](https://gerasimou.github.io/NMI/) :page_facing_up: and 
-<a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view" target="_blank">
+For more information, see [the project's webpage](https://gerasimou.github.io/RBV/) :page_facing_up: and 
+<a href="https://drive.google.com/file/d/1fLZ3Bip8Y0KRiaWfMOMRZStPbPpCdHqy/view" target="_blank">
 this video
 </a>
 :movie_camera:
@@ -25,7 +25,7 @@ We consider an autonomous underwater vehicle (AUV) deployed to execute a structu
 
 The AUV is deployed to collect data about the condition of floating chains to enable the post-mission identification of problems that could affect the structural integrity of the chain. When the visual inspection of a chain is hindered due to accumulated biofouling, the AUV can use its on-board high-pressure water jet to clean the chain and continue with the inspection2. 
 
-The full details of the AUV mission, including its model using continuous-time Markov chains, Quality-of-Sevice requirements, example scenario and a video illustrating the its execution can be found on the [project webpage](https://gerasimou.github.io/NMI/caseStudy/).
+The full details of the AUV mission, including its model using continuous-time Markov chains, Quality-of-Sevice requirements, example scenario and a video illustrating the its execution can be found on the [project webpage](https://gerasimou.github.io/RBV/caseStudy/).
 
 --- 
 
@@ -36,7 +36,7 @@ The full details of the AUV mission, including its model using continuous-time M
 
 2) Install the MOOS-IvP simulator by following the instructions provided in the simulator for your target operating system (Linux or OSX).
 
-3) Download the AUV simulation code available in the [moos-ivp-nmi](https://github.com/gerasimou/NMI/tree/main/moos-ivp-nmi) directory.
+3) Download the AUV simulation code available in the [moos-ivp-nmi](https://github.com/gerasimou/RBV/tree/main/moos-ivp-nmi) directory.
 
 4) Navigate to the ``moos-ivp-nmi`` directory and execute
         
@@ -62,7 +62,7 @@ The full details of the AUV mission, including its model using continuous-time M
 
        > 2 indicates how fast the simulation will run
 
-**Note:** You can alter the mission by changing the sUUVNMI script in the [nmi.moos](https://github.com/gerasimou/NMI/blob/main/moos-ivp-nmi/missions/s3_uuvnmi/nmi.moos) file.
+**Note:** You can alter the mission by changing the sUUVNMI script in the [nmi.moos](https://github.com/gerasimou/RBV/blob/main/moos-ivp-nmi/missions/s3_uuvnmi/nmi.moos) file.
     
     
 
