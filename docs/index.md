@@ -24,7 +24,7 @@ hide:
     <!-- **autonomous robotic mission for underwater infrastructure inspection and repair** -->
 
 
-    <a href="https://drive.google.com/file/d/1dv6EyhTIH36kcLw5ELdu4flwcn-tJC_s/view?usp=share_link" target="_blank">
+    <a href="https://drive.google.com/file/d/1fLZ3Bip8Y0KRiaWfMOMRZStPbPpCdHqy/view?usp=share_link" target="_blank">
         :material-video:{ .filledIconsBlue }
      </a>
     <a href="https://github.com/gerasimou/NMI" target="_blank">
