@@ -1,0 +1,21 @@
+.md-typeset .admonition,
+.md-typeset details {
+  /* border-width: 0; */
+  /* border-left-width: 4px; */
+  font-size: large;
+}
+
+.filledIconsBlue {
+  color: #1DA1F2;
+  font-size: 2vw;
+}
+
+.filledIconsDarkBlue {
+  color: #2630C2;
+  font-size: 2vw;
+}
+
+
+.filled {
+  color: #1DA1F2;
+}

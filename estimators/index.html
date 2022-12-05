@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Bayesian Estimators - Robust Bayesian Verification</title>
+<link href="../assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="../assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#bayesian-interval-estimators">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Robust Bayesian Verification" class="md-header__button md-logo" data-md-component="logo" href=".." title="Robust Bayesian Verification">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Robust Bayesian Verification
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Bayesian Estimators
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+</form>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Robust Bayesian Verification" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Robust Bayesian Verification">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Robust Bayesian Verification
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+        Home
+      </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Bayesian Estimators
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+        Bayesian Estimators
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bayesian-learning-of-ctmc-transition-rates">
+    Bayesian Learning of CTMC Transition Rates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bipp-estimator">
+    BIPP Estimator
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ipsp-estimator">
+    IPSP Estimator
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../caseStudy/">
+        Robotic Mission
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../authors/">
+        Authors
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bayesian-learning-of-ctmc-transition-rates">
+    Bayesian Learning of CTMC Transition Rates
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#bipp-estimator">
+    BIPP Estimator
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#ipsp-estimator">
+    IPSP Estimator
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="bayesian-interval-estimators"><strong>Bayesian Interval Estimators</strong></h1>
+<h2 id="bayesian-learning-of-ctmc-transition-rates"><strong>Bayesian Learning of CTMC Transition Rates</strong></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Given two states <span class="arithmatex">\(s_i\)</span> and <span class="arithmatex">\(s_j\)</span> of a continuous-time Markov chain (CTMC) such that transitions from <span class="arithmatex">\(s_i\)</span> to <span class="arithmatex">\(s_j\)</span> occur with rate <span class="arithmatex">\(\lambda\)</span>, each transition from <span class="arithmatex">\(s_i\)</span> to <span class="arithmatex">\(s_j\)</span> is independent of how state <span class="arithmatex">\(s_i\)</span> was reached (the Markov property). </li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> The time spent in state <span class="arithmatex">\(s_i\)</span> before a transition to <span class="arithmatex">\(s_j\)</span> is modelled by a homogeneous Poisson process of rate <span class="arithmatex">\(\lambda\)</span>. </li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> The likelihood that "data" collected by observing the CTMC shows <span class="arithmatex">\(n\)</span> such transitions occurring within a combined time <span class="arithmatex">\(t\)</span> spent in state <span class="arithmatex">\(s_i\)</span> is given by the conditional probability:</li>
+</ul>
+<div class="admonition quote">
+<div class="arithmatex">\[
+l(\lambda) = \mathit{Pr}\left(data \mid \lambda\right)=\frac{\left(\lambda t\right)^{n}}{n!}e^{-\lambda t}
+\]</div>
+</div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> The rate <span class="arithmatex">\(\lambda\)</span> is typically unknown, but prior beliefs about its value are available (e.g., from domain experts or from past experience) as a probability (density or mass) function <span class="arithmatex">\(f(\lambda)\)</span>. </li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Thus, the Bayes Theorem can be used to derive a <em>posterior probability function</em> that combines the likelihood <span class="arithmatex">\(l(\lambda)\)</span> and the prior <span class="arithmatex">\(f(\lambda)\)</span> into a better estimate for <span class="arithmatex">\(\lambda\)</span> at time <span class="arithmatex">\(t\)</span>:</li>
+</ul>
+<div class="admonition quote">
+<div class="arithmatex">\[
+f(\lambda\mid data) = \frac{l(\lambda)f(\lambda)}{\int_{0}^{\infty} l(\lambda)f(\lambda) d\lambda}
+\]</div>
+</div>
+<h2 id="bipp-estimator"><strong>BIPP Estimator</strong></h2>
+<p>The <strong>Bayesian inference using partial priors (BIPP) estimator</strong> is used to model <em>extremely rare</em> events, including major failures and the successful completion of difficult one-off tasks.
+Typically, no observations of these events are available and only limited domain knowledge is often available to select and justify a prior distribution for these singular events. </p>
+<p>The BIPP estimator requires only <strong>limited, partial prior knowledge</strong> instead of the complete prior distribution typically needed for Bayesian inference. </p>
+<!-- BIPP provides bounded posterior estimates that are robust in the sense that the ground truth rate values are within the estimated intervals. -->
+<details class="info">
+<summary>Partial prior knowledge</summary>
+<p>Instead of a prior distribution <span class="arithmatex">\(f(\lambda)\)</span>, we assume that we only have limited partial knowledge comprising <span class="arithmatex">\(m\geq 2\)</span> confidence bounds on <span class="arithmatex">\(f(\lambda)\)</span>:
+$$
+Pr(\epsilon_{i-1} &lt; \lambda \leq \epsilon_i)=\theta_i 
+$$
+where <span class="arithmatex">\(1\leq i \leq m\)</span>, <span class="arithmatex">\(\theta_i&gt;0\)</span>, and <span class="arithmatex">\(\sum_{i=1}^{m} \theta_i=1\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+</details>
+<details class="info">
+<summary>BIPP Theorem</summary>
+<p>The set <span class="arithmatex">\(S_\lambda\)</span> of posterior estimate rates of all prior distributions <span class="arithmatex">\(f(\lambda)\)</span> satisfying the partial prior knowledge conditions has an infinum <span class="arithmatex">\(\lambda_l\)</span> and a supremum <span class="arithmatex">\(\lambda_u\)</span> given by:
+$$
+\lambda_l = \min { \frac{\sum_{i=1}^m [\epsilon_i l(\epsilon_i)(1-x_i)\theta_i+\epsilon_{i-1}l(\epsilon_{i-1})x_i\theta_i]}
+{\sum_{i=1}^{m} [l(\epsilon_{i})(1-x_i)\theta_i+l(\epsilon_{i-1})x_i\theta_i]} \bigg| \forall 1\leq i\leq m . x_i\in[0,1]
+    }
+$$</p>
+</details>
+<div class="admonition info">
+<p class="admonition-title">BIPP closed-form formulae</p>
+<p>When <span class="arithmatex">\(m=3\)</span>, the BIPP bounds satisfy:</p>
+<div class="arithmatex">\[
+\lambda_l \geq  
+\begin{cases}
+    \frac{\epsilon_{1}l(\epsilon_{1})\theta_2}{\theta_1+l(\epsilon_{1})\theta_2}, &amp; \text{if } \frac{\theta_2 (\epsilon_{1}-\epsilon_2)}{\theta_1} &gt; \frac{\epsilon_{2}l(\epsilon_{2})- \epsilon_{1}l(\epsilon_{1}) }{l(\epsilon_{1})l(\epsilon_{2})}\\
+    \frac{\epsilon_{2}l(\epsilon_{2})\theta_2}{\theta_1+l(\epsilon_{2})\theta_2}, &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<div class="arithmatex">\[
+\lambda_u &lt; 
+\begin{cases}
+    \frac{\epsilon_1 l(\epsilon_1) \theta_1 +\epsilon_2 l(\epsilon_2) \theta_2+\frac{1}{t} l(\frac{1}{t})(1-\theta_1-\theta_2)} { l(\epsilon_1) \theta_1 }, &amp; \text{if } t &lt; \frac{1}{\epsilon_{2}}\\
+    \frac{\epsilon_1 l(\epsilon_1) \theta_1 +\frac{1}{t} l(\frac{1}{t}) \theta_2+\epsilon_2 l(\epsilon_2)(1-\theta_1-\theta_2)} { l(\epsilon_1) \theta_1 }, &amp; \text{if }  \frac{1}{\epsilon_{2}} \leq t \leq \frac{1}{\epsilon_{1}}\\
+    \frac{\epsilon_1 l(\epsilon_1) (\theta_1+\theta_2) +\epsilon_2 l(\epsilon_2)(1-\theta_1-\theta_2)} { l(\epsilon_1) \theta_1 }, &amp; \text{otherwise} %  t &gt; \frac{1}{\epsilon_{1}}
+\end{cases}
+\]</div>
+<ul>
+<li>When <span class="arithmatex">\(m=2\)</span>, <span class="arithmatex">\(\epsilon_2=\epsilon_1\)</span> and <span class="arithmatex">\(\theta_2=0\)</span></li>
+</ul>
+</div>
+<h2 id="ipsp-estimator"><strong>IPSP Estimator</strong></h2>
+<p>The <strong>Bayesian inference using imprecise probability with sets of priors (IPSP) estimator</strong> is used to model <em>regularly occurring</em> events. </p>
+<p>Instead of point values, the IPSP estimator uses ranges <span class="arithmatex">\([\underline{t}^{(0)},\overline{t}\textrm{}^{(0)}]\)</span> and <span class="arithmatex">\([\underline{\lambda}^{(0)},\overline{\lambda}\textrm{}^{(0)}]\)</span> for the prior knowledge of time and rate, respectively.</p>
+<details class="info">
+<summary>Posterior value calculation</summary>
+<p>The posterior value <span class="arithmatex">\(\lambda^{(t)}\)</span> for the transition rate after observing <span class="arithmatex">\(n\)</span> transitions within <span class="arithmatex">\(t\)</span> time units is derived using classical Bayesian theory:</p>
+<div class="arithmatex">\[
+\lambda^{(t)} =\frac{t^{(0)}}{t+t^{(0)}}\lambda^{(0)} +\frac{t}{t+t^{(0)}}\frac{n}{t}
+\]</div>
+</details>
+<div class="admonition info">
+<p class="admonition-title">IPSP closed-form formulae</p>
+<p>Given uncertain prior parameters <span class="arithmatex">\(t^{(0)}\in[\underline{t}^{(0)},\)</span> <span class="arithmatex">\(\overline{t}\textrm{}^{(0)}]\)</span> and <span class="arithmatex">\(\lambda^{(0)}\in[\underline{\lambda}^{(0)},\overline{\lambda}\textrm{}^{(0)}]\)</span>, the posterior rate <span class="arithmatex">\(\lambda^{(t)}\)</span> can range in the interval  <span class="arithmatex">\([\underline{\lambda}^{(t)},\overline{\lambda}\textrm{}^{(t)}]\)</span>, where:</p>
+<div class="arithmatex">\[
+\underline{\lambda}^{(t)}=
+\begin{cases} 
+    \frac{\overline{t}\text{}^{(0)}\underline{\lambda}^{(0)}+n}{\overline{t}\text{}^{(0)}+t}, &amp; \text{if } \frac{n}{t} \geq \underline{\lambda}^{(0)}\\
+    \frac{\underline{t}^{(0)}\underline{\lambda}^{(0)}+n}{\underline{t}^{(0)}+t}, &amp; \text{otherwise} %\quad \frac{n}{t} &lt;\underline{\lambda}^{(0)}
+\end{cases}
+\]</div>
+<div class="arithmatex">\[
+\overline{\lambda}^{(t)}=
+\begin{cases} 
+    \frac{\overline{t}\text{}^{(0)}\overline{\lambda}\text{}^{(0)}+n}{\overline{t}\text{}^{(0)}+t}, &amp; \text{if } \frac{n}{t} \leq \overline{\lambda}\text{}^{(0)}\\
+    \frac{\underline{t}^{(0)}\overline{\lambda}\text{}^{(0)}+n}{\underline{t}^{(0)}+t}, &amp; \text{otherwise} %\quad \frac{n}{t} &gt;\overline{\lambda}\text{}^{(0)}
+\end{cases}
+\]</div>
+</div>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><span class="arithmatex">\(Pr(\lambda\geq \epsilon_0)=Pr(\lambda\leq \epsilon_m)=1\)</span>; when no specific information is available, <span class="arithmatex">\(\epsilon_0=0\)</span> and <span class="arithmatex">\(\epsilon_m=+\infty\)</span>. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid" hidden="">
+<a aria-label="Previous: Home" class="md-footer__link md-footer__link--prev" href=".." rel="prev">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</div>
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+</div>
+</a>
+<a aria-label="Next: Robotic Mission" class="md-footer__link md-footer__link--next" href="../caseStudy/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Robotic Mission
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script src="../javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>

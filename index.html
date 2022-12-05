@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.4.2, mkdocs-material-8.5.10" name="generator"/>
+<title>Robust Bayesian Verification</title>
+<link href="assets/stylesheets/main.975780f9.min.css" rel="stylesheet"/>
+<link href="assets/stylesheets/palette.2505c338.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="stylesheets/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+<link href="assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            
+                .gscrollbar-fixer { padding-right: 15px; }
+                .gdesc-inner { font-size: 0.75rem; }
+                body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+                body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+                body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}
+                </style><script src="assets/javascripts/glightbox.min.js"></script></head>
+<body data-md-color-accent="" data-md-color-primary="" data-md-color-scheme="default" dir="ltr">
+<script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#robust-bayesian-verification">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header md-header--lifted" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Robust Bayesian Verification" class="md-header__button md-logo" data-md-component="logo" href="." title="Robust Bayesian Verification">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Robust Bayesian Verification
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="Switch to dark mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="" data-md-color-scheme="default" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_2" hidden="" title="Switch to dark mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3Z"></path></svg>
+</label>
+<input aria-label="Switch to light mode" class="md-option" data-md-color-accent="" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="" data-md-color-scheme="slate" id="__palette_2" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="Switch to light mode">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zm0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4zM7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"></path></svg>
+</label>
+</form>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Robust Bayesian Verification" class="md-nav__button md-logo" data-md-component="logo" href="." title="Robust Bayesian Verification">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+</a>
+    Robust Bayesian Verification
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href=".">
+        Home
+      </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#framework">
+    Framework
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="estimators/">
+        Bayesian Estimators
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="caseStudy/">
+        Robotic Mission
+      </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="authors/">
+        Authors
+      </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#framework">
+    Framework
+  </a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="robust-bayesian-verification">Robust Bayesian Verification</h1>
+<details class="tip" open="open">
+<summary>Summary</summary>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> A novel <strong>Bayesian learning framework</strong> enabling the runtime verification of autonomous robots performing critical missions in uncertain environments.</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> We consider <strong>regular</strong> (occurring regularly during system operation) and <strong>singular events</strong> occurring zero/once (catastrophic failures, completion of difficult one-off tasks).</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Our <a href="estimators/#bipp-estimator">BIPP Bayesian estimator</a> (using partial priors) uses prior knowledge and the lack of runtime data to learn expected ranges of rates  for singular events</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Our <a href="estimators/#ipsp-estimator">IPSP Bayesian estimator</a> (using imprecise probability with sets of priors) uses prior knowledge and runtime data to learn expected ranges of rates for regural events</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> The learnt rate ranges instrument <strong>interval continuous-time Markov models</strong> </p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> Quantitative verification on these models enables computing <strong>expected intervals for key system properties</strong> capturing the parametric uncertainy of the robotic mission</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"/><span class="task-list-indicator"></span></label> The framework is illustrated on a case study for the verification of an <strong>offshore wind-turbine inspection and maintenance robotic mission</strong>
+<!-- **autonomous robotic mission for underwater infrastructure inspection and repair** --></p>
+</li>
+</ul>
+<p><a href="https://drive.google.com/file/d/1fLZ3Bip8Y0KRiaWfMOMRZStPbPpCdHqy/view?usp=share_link" target="_blank">
+<span class="twemoji filledIconsBlue"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-3.5l4 4v-11l-4 4Z"></path></svg></span>
+</a>
+<a href="https://github.com/gerasimou/NMI" target="_blank">
+<span class="twemoji filledIconsDarkBlue"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"></path></svg></span>
+</a></p>
+</details>
+<!-- [[Subscribe to our newsletter](#){ .md-button }]() -->
+<!-- - [x] You can find a :material-video:{ .filledIconsBlue } showing our work is available -->
+<!-- [here](assets/video/nmiVideo.mp4):material-video:{ .filled }  -->
+<!-- - [x]  Prior knowledge and runtime observations are used to learn expected ranges of rates values for regural and singural events -->
+<!-- - catastrophic failures, completion of difficult one-off tasks) -->
+<!-- [ ] For **regular events**, we developed a Bayesian inference using imprecise probability with sets of priors (IPSP) estimator -->
+<!-- - [ ] For **singular events**, we developed a Bayesian inference using partial priors (BIPP) estimator -->
+<!-- [Send :fontawesome-solid-paper-plane:][Demo]{ .md-button } -->
+<h2 id="framework">Framework</h2>
+<figure>
+<p><a class="glightbox" data-desc-position="bottom" data-height="auto" data-width="100%" href="assets/images/diagramFramework.png"><img alt="Robust Bayesian Verification Framework" src="assets/images/diagramFramework.png" title="Robust Bayesian Verification Framework"/></a>
+</p>
+<figcaption>Robust Bayesian Verification Framework</figcaption>
+</figure>
+<p>Our end-to-end verification framework supports the online computation of <strong>bounded intervals of CTMC properties</strong>. 
+The framework integrates our <a href="estimators/#bipp-estimator">BIPP</a> and <a href="estimators/#ipsp-estimator">IPSP</a> Bayesian interval estimators with interval CTMC model checking<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Monitoring the system under verification enables to observe both the occurrence of regular events, and <em>the lack of singular events</em> during times when such events could have occurred (e.g., a catastrophic failure not happening when the system performs a dangerous operation). </p>
+<p>Our online <a href="estimators/#bipp-estimator">BIPP estimator</a> and <a href="estimators/#ipsp-estimator">IPSP estimator</a> use these observations to calculate expected ranges for the rates of the monitored events, enabling a <em>Model Generator</em> to continually synthesise up-to-date interval CTMCs that model the evolving behaviour of the system. </p>
+<p>The interval CTMCs are synthesised from a parametric CTMC model that captures the structural aspects of the system under verification. The synthesised CTMCs are then continually verified by the <em>PRISM-PSY Model Checker</em><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> to compute value intervals for key system properties. These properties range from dependability (e.g., safety, reliability and availability) and performance (e.g., response time and throughput) properties to resource use and system utility. </p>
+<p>Finally, changes in the value ranges of these properties may prompt the dynamic reconfiguration of the system by a <em>Controller</em> module responsible for ensuring that the system requirements are satisfied at all times. </p>
+<div class="footnote">
+<hr/>
+<ol>
+<li id="fn:1">
+<p>Lubos Brim, Milan Ceska, Sven Drazan, and David Safranek. Exploring parameter space of stochastic  biochemical systems using quantitative model checking. In Computer Aided Verification (CAV), pages 107–123, 2013. <a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">↩</a></p>
+</li>
+<li id="fn:2">
+<p>Milan Ceska, Petr Pilar, Nicola Paoletti, Lubos Brim, and Marta Kwiatkowska. PRISM-PSY: Precise GPU-accelerated parameter synthesis for stochastic systems. In Tools and Algorithms for the Construction and Analysis of Systems, volume 9636 of LNCS, pages 367–384, 2016. <a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">↩</a></p>
+</li>
+</ol>
+</div>
+</article>
+</div>
+</div>
+<a class="md-top md-icon" data-md-component="top" hidden="" href="#">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"></path></svg>
+            Back to top
+          </a>
+</main>
+<footer class="md-footer">
+<nav aria-label="Footer" class="md-footer__inner md-grid" hidden="">
+<a aria-label="Next: Bayesian Estimators" class="md-footer__link md-footer__link--next" href="estimators/" rel="next">
+<div class="md-footer__title">
+<div class="md-ellipsis">
+<span class="md-footer__direction">
+                Next
+              </span>
+              Bayesian Estimators
+            </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs.sticky", "navigation.indexes", "navigation.top"], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+<script src="assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+<script src="javascripts/mathjax.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>document$.subscribe(() => {const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});})</script></body>
+</html>
