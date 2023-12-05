@@ -15,7 +15,7 @@ INCLUDE_DIRECTORIES(${LOCAL_LIBRARY_DIRS})
 # List the subdirectories to build...
 #============================================================================
 #ADD_SUBDIRECTORY(lib_behaviors-test)
-ADD_SUBDIRECTORY(sUUVNMI)
+ADD_SUBDIRECTORY(sUUVRBV)
 ##############################################################################
 #                           END of CMakeLists.txt
 ##############################################################################
