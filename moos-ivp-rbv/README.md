@@ -1,2 +1,2 @@
-# moos-ivp-nmi
-MOOS IVP NMI Case Study
+# Moos-IvP-RBV
+MOOS IVP RBV Case Study
