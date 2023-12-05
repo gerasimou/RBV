@@ -1,5 +1,5 @@
 #!/bin/bash -e
-COMMUNITY="nmi"
+COMMUNITY="rbv"
 
 #-------------------------------------------------------
 #  Part 1: Check for and handle command-line arguments
