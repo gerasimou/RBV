@@ -36,33 +36,33 @@ The full details of the AUV mission, including its model using continuous-time M
 
 2) Install the MOOS-IvP simulator by following the instructions provided in the simulator for your target operating system (Linux or OSX).
 
-3) Download the AUV simulation code available in the [moos-ivp-nmi](https://github.com/gerasimou/RBV/tree/main/moos-ivp-nmi) directory.
+3) Download the AUV simulation code available in the [moos-ivp-rbv](https://github.com/gerasimou/RBV/tree/main/moos-ivp-rbv) directory.
 
-4) Navigate to the ``moos-ivp-nmi`` directory and execute
+4) Navigate to the ``moos-ivp-rbv`` directory and execute
         
         ./clean.sh
-        ./build.sh sUUVNMI
+        ./build.sh sUUVRBV
    - If everything went well, you will see the message
-       > ``[100%] Built target sUUVNMI``
+       > ``[100%] Built target sUUVRBV``
 
 
 
-5) Add the full path to the ``moos-ivp-nmi/bin`` directory to your shell path
+5) Add the full path to the ``moos-ivp-rbv/bin`` directory to your shell path
    - If everything went well, you will see the message
        > OSX   -> ./bash_profile 
        > Unix  -> ./bashrc
 
-    PATH="FULL_PATH_TO"/moos-ivp-nmi/bin:$PATH
+    PATH="FULL_PATH_TO"/moos-ivp-rbv/bin:$PATH
 
-       > replace "FULL_PATH_TO" with the full path leading to the ``moos-ivp-nmi/bin`` directory
+       > replace "FULL_PATH_TO" with the full path leading to the ``moos-ivp-rbv/bin`` directory
 
-6) Navigate to ``moos-ivp-nmi/missions/s3_uuvnmi`` and run the mission by executing
+6) Navigate to ``moos-ivp-rbv/missions/s3_uuvrbv`` and run the mission by executing
 
     ./launch.sh 2
 
        > 2 indicates how fast the simulation will run
 
-**Note:** You can alter the mission by changing the sUUVNMI script in the [nmi.moos](https://github.com/gerasimou/RBV/blob/main/moos-ivp-nmi/missions/s3_uuvnmi/nmi.moos) file.
+**Note:** You can alter the mission by changing the sUUVRBV script in the [rbv.moos](https://github.com/gerasimou/RBV/blob/main/moos-ivp-rbv/missions/s3_uuvrbv/rbv.moos) file.
     
     
 
